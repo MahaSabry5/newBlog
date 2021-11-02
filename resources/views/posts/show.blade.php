@@ -1,5 +1,4 @@
-{{--@extends('components.layout')--}}
-{{--@section('content')--}}
+
 <x-layout>
     <section class="px-6 py-8">
 
@@ -53,9 +52,23 @@
                     </div>
                 </div>
                 <section class="col-span-8 col-start-5 mt-10 space-y-6" >
-{{--                    <form method="POST" action="#" class="">--}}
-{{--                        @csrf--}}
-{{--                    </form>--}}
+                    @auth
+                    <form method="POST" action="/posts/{{$post->slug}}/comments" class="rounded-xl border border-gray-200 p-6">
+                        @csrf
+                        <header class="flex items-center">
+                            <img src="https://i.pravatar.cc/60?u={{auth()->id()}}" width="40px" height="40px" class="rounded-full">
+                            <h2 class="ml-4">Want to participate!</h2>
+                        </header>
+                        <div class="mt-5">
+                            <textarea name="body" class="w-full text-am focus:outline-none focus:ring" rows="5" placeholder="Write a comment!!"></textarea>
+                        </div >
+                        <div class="flex justify-end mt-6 border-t border-gray-200 pt-3">
+                            <button type="submit" class="uppercase font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">
+                            Post
+                            </button>
+                        </div>
+                    </form>
+                    @endauth
                     @foreach($post->comments as $comment)
                         <x-comment-layout :comment="$comment"/>
                     @endforeach
@@ -63,22 +76,7 @@
             </article>
         </main>
 
-
     </section>
 
-    {{--    <article>--}}
-    {{--        <h1>--}}
-    {{--            {{$post -> title}}--}}
-    {{--        </h1>--}}
-    {{--        <p>--}}
-    {{--            By <a href = '/authors/{{$post->author->username}}'>{{$post ->author -> name}}</a> in  <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>--}}
-    {{--        </p>--}}
-    {{--        <DIV>--}}
-    {{--            {!!$post -> body !!}--}}
-
-    {{--        </DIV>--}}
-    {{--    </article>--}}
-
-    {{--    <a href="/">Go Back</a>--}}
 </x-layout>
-{{--@endsection--}}
+

@@ -15,6 +15,11 @@
         <p>
             {{$comment->body}}
         </p>
+        @can('admin')
+            <x-form.deletecomment :comment="$comment"/>
+        @endcan
+
     </div>
+
 
 </article>

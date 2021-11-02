@@ -18,12 +18,18 @@
 
         <div class="mt-8 md:mt-0 item-center flex">
             @auth
-                <span class="text-xs font-bold uppercase">Welcome , {{auth()->user()->name}}</span>
-                <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
-                    @csrf
-                    <button type="submit">Log Out</button>
-
-                </form>
+                <x-dropDown>
+                    <x-slot name="trigger">
+                        <button class="text-xs font-bold uppercase">Welcome , {{auth()->user()->name}}</button>
+                    </x-slot>
+                    @can('admin')
+                        <x-dropDown-item href="admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropDown-item>
+                    @endcan
+                        <x-dropDown-item href="/logout" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropDown-item>
+                </x-dropDown>
+                    <form id="logout-form" method="POST" action="/logout" class="hidden">
+                        @csrf
+                    </form>
             @else
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
                 <a href="/login" class="ml-3 text-xs font-bold uppercase">Login</a>

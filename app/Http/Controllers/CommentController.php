@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,10 @@ class CommentController extends Controller
             'body'=> request('body')
         ]);
         return back();
-
+    }
+    public function destroy(Comment $comment){
+        $comment->delete();
+        return back()->with('success','comment deleted');
 
     }
 }

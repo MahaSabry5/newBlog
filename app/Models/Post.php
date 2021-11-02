@@ -13,6 +13,7 @@ class Post extends Model
     public function category(){
         return $this-> belongsTo(Category::class);
     }
+  //filter posts due to word
     public function scopeFilter($query,array $filters){
         $query->when($filters['search']?? false,function ($query,$search){
             $query ->where(function ($query) use ($search) {
@@ -22,7 +23,7 @@ class Post extends Model
 
         });
 
-
+//filter posts from dropdown list -> categories
         $query->when($filters['category']?? false,function ($query,$category){
                 $query
 //                    -> whereExists(function ($query) use ($category) {

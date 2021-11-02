@@ -28,6 +28,11 @@
                            required
                     >
                 </div>
+                @foreach($errors->all() as $error)
+                    <li class="text-red-500 text-xs ">
+                        {{$error}}
+                    </li>
+                @endforeach
                 <div class="mb-6 ">
                     <button type="submit" class="bg-blue-400 text-white py-2 px-4 rounded hover:bg-blue-500">
                         Submit

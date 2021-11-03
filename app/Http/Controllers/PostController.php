@@ -12,8 +12,12 @@ use phpDocumentor\Reflection\Types\Resource_;
 class PostController extends Controller
 {
     //
-    public function index(){
+//    public function __construct()
+//    {
+//        $this->scopeFilter();
+//    }
 
+    public function index(){
         return view('posts.index',[
             'posts' => Post::latest()->filter(request(['search','category','author']))->paginate(6)->withQueryString()
             //get the latest created posts at the top
@@ -23,9 +27,26 @@ class PostController extends Controller
 
     }
     public function show(Post $post){
+
         return view('posts.show',['post' => $post]);
 
     }
+    public function authorPosts(Request $request){
+       //return $request;
+        $posts=Post::whereHas('author',function ($query) use ($request){
+            $query->where('username','like',$request->author);
+        })->get();
+        return view('posts.view',['posts'=>$posts]);
+    }
+//    public function catPosts(Request $request){
+//        return $request;
+//        $posts=Post::whereHas('category',function ($query) use ($request){
+//            $query->where('slug','like',$request->category);
+//        })->get();
+//        return view('posts.view',['posts'=>$posts]);
+//    }
+
+
     public function create(){
 
         return view('admin.posts.create');
@@ -47,5 +68,6 @@ class PostController extends Controller
 
 
     }
+
 
 }

@@ -11,7 +11,7 @@
 <section class="px-6 py-8">
     <nav class="md:flex md:justify-between md:items-center">
         <div>
-            <a href="/">
+            <a href="{{route('home')}}">
                 <img src="{{asset('/images/logo.svg')}}" alt="Laracasts Logo" width="165" height="16">
             </a>
         </div>
@@ -22,7 +22,9 @@
                     <x-slot name="trigger">
                         <button class="text-l text-blue-500 font-bold uppercase mr-10">Welcome , {{auth()->user()->name}}</button>
                     </x-slot>
-                    @can('admin')
+                    <x-dropDown-item href="{{route('home')}}" :active="request()->route()->named('home')">Home</x-dropDown-item>
+
+                @can('admin')
                         <x-dropDown-item href="{{route('createPost')}}" :active="request()->route()->named('createPost')">New Post</x-dropDown-item>
                     @endcan
                         <x-dropDown-item href="{{route('logout')}}" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropDown-item>

@@ -13,7 +13,7 @@ class Post extends Model
     public function category(){
         return $this-> belongsTo(Category::class);
     }
-  //filter posts due to word
+    //filter posts due to word
     public function scopeFilter($query,array $filters){
         $query->when($filters['search']?? false,function ($query,$search){
             $query ->where(function ($query) use ($search) {
@@ -25,29 +25,20 @@ class Post extends Model
 
 //filter posts from dropdown list -> categories
         $query->when($filters['category']?? false,function ($query,$category){
-                $query
-//                    -> whereExists(function ($query) use ($category) {
-//                        return $query->from('categories')
-//                            ->whereColumn('categories.id', 'posts.category_id')
-//                            ->where('categories.slug', $category);
-            ->whereHas('category', function ($query) use ($category) {
-                        return $query->where('slug', $category);
-                    });
+            $query
+                ->whereHas('category', function ($query) use ($category) {
+                    return $query->where('slug', $category);
+                });
 
         });
-//        if($filters['search']?? false){
-//            $query
-//                -> where('title','like','%'.request('search').'%')
-//                ->orWhere('body','like','%'.request('search').'%');
-//        }
+
+
         $query->when($filters['author']?? false,function ($query,$author){
             $query
                 ->whereHas('author', function ($query) use ($author) {
-                    return $query->where('username', $author);
+                    return $query->where('username','like', $author);
                 });
         });
-
-
     }
     public function comments(){
         return $this-> hasMany(Comment::class);

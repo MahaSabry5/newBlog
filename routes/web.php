@@ -27,6 +27,10 @@ Route::get('/', [PostController::class , 'index'])->name('home');
 
 //Route Model Binding
 Route::get('/posts/{post:slug}', [PostController::class , 'show'])->name('post.show');
+Route::get('/post/{author}', [PostController::class , 'authorPosts'])->name('authName');
+Route::get('/post/{category}', [PostController::class , 'catPosts'])->name('categoryname');
+
+
 Route::post('/posts/{post:slug}/comments', [CommentController::class , 'store'])->name('storeComment');
 
 

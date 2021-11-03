@@ -29,18 +29,9 @@ Route::get('/', [PostController::class , 'index'])->name('home');
 Route::get('/posts/{post:slug}', [PostController::class , 'show'])->name('post.show');
 Route::post('/posts/{post:slug}/comments', [CommentController::class , 'store'])->name('storeComment');
 
-//Route::get('/register', [RegisterController::class , 'create'])->middleware('guest');
-//Route::post('/register', [RegisterController::class , 'store'])->middleware('guest');
-//
-//Route::get('/login', [SessionsController::class , 'create'])->middleware('guest');
-//Route::post('/login', [SessionsController::class , 'store'])->middleware('guest');
+
 Route::post('/logout', [SessionsController::class , 'destroy'])->name('logout')->middleware('auth');
 
-//
-//Route::get('/admin/posts',[AdminPostController::class,'index'])->middleware('can:admin');
-//Route::get('/admin/posts/create',[PostController::class,'create'])->middleware('can:admin');
-//Route::post('/admin/posts',[PostController::class,'store'])->middleware('can:admin');
-//Route::delete('/admin/posts/{comment}',[CommentController::class,'destroy'])->middleware('can:admin');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [RegisterController::class , 'create'])->name('createUser');

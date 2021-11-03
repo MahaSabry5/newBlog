@@ -11,7 +11,7 @@ class Post extends Model
   //  protected $fillable = ['title','excerpt','body'];
     protected $with = ['category','author'];
     public function category(){
-        return $this-> belongsTo(Category::class);
+        return $this-> belongsTo(Category::class,);
     }
     //filter posts due to word
     public function scopeFilter($query,array $filters){

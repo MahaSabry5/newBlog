@@ -38,13 +38,13 @@ class PostController extends Controller
         })->get();
         return view('posts.view',['posts'=>$posts]);
     }
-//    public function catPosts(Request $request){
-//        return $request;
-//        $posts=Post::whereHas('category',function ($query) use ($request){
-//            $query->where('slug','like',$request->category);
-//        })->get();
-//        return view('posts.view',['posts'=>$posts]);
-//    }
+    public function catPosts($category){
+        //return $category;
+        $posts=Post::whereHas('category',function ($query)use($category){
+            $query->where('category_id',$category);
+        })->get();
+        return view('posts.view',['posts'=>$posts]);
+    }
 
 
     public function create(){

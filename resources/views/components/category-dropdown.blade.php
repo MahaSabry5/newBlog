@@ -13,14 +13,18 @@
             </svg>
         </button>
     </x-slot>
-    <x-dropDown-item href="/?{{http_build_query(request()->except('category','page'))}}"
-                     :active="request()->routeIs('home')">All </x-dropDown-item >
+{{--    <x-dropDown-item href="/?{{http_build_query(request()->except('category','page'))}}"--}}
+{{--                     :active="request()->routeIs('home')">All </x-dropDown-item >--}}
+    <x-dropDown-item href="{{route('home')}}">All </x-dropDown-item >
 
 
     @foreach($categories as $category)
-        <x-dropDown-item href="/?category={{$category -> slug}} & {{http_build_query(request()->except('category','page'))}}"
-                         :active=" isset($currentCat) && $currentCat-> is($category)">
+        <x-dropDown-item href="{{route('categoryname',[$category->id])}}">
             {{ucwords($category -> name)}}
         </x-dropDown-item >
+{{--        <x-dropDown-item href="/?category={{$category -> slug}} & {{http_build_query(request()->except('category','page'))}}"--}}
+{{--                         :active=" isset($currentCat) && $currentCat-> is($category)">--}}
+{{--            {{ucwords($category -> name)}}--}}
+{{--        </x-dropDown-item >--}}
     @endforeach
 </x-dropDown>

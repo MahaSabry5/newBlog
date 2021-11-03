@@ -5,7 +5,7 @@
             <h1 class="text-lg font-bold mb-4 text-center">
                 Manage Post
             </h1>
-            <form method="POST" action="/admin/posts" class="mt-10">
+            <form method="POST" action="{{route('storePost')}}" class="mt-10">
                 @csrf
                 <x-form.input name="title"/>
                 <x-form.input name="slug"/>

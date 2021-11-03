@@ -1,5 +1,5 @@
 @props(['post'])
-<form method="POST" action="/posts/{{$post->slug}}/comments" class="rounded-xl border border-gray-200 p-6">
+<form method="POST" action="{{route('storeComment',[$post->slug])}}" class="rounded-xl border border-gray-200 p-6">
     @csrf
     <header class="flex items-center">
         <img src="https://i.pravatar.cc/60?u={{auth()->id()}}" width="40px" height="40px" class="rounded-full">
@@ -18,3 +18,4 @@
     </div>
 
 </form>
+{{--/posts/{{$post->slug}}/comments--}}

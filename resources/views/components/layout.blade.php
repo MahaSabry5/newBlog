@@ -23,16 +23,16 @@
                         <button class="text-l text-blue-500 font-bold uppercase mr-10">Welcome , {{auth()->user()->name}}</button>
                     </x-slot>
                     @can('admin')
-                        <x-dropDown-item href="admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropDown-item>
+                        <x-dropDown-item href="{{route('createPost')}}" :active="request()->route()->named('createPost')">New Post</x-dropDown-item>
                     @endcan
-                        <x-dropDown-item href="/logout" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropDown-item>
+                        <x-dropDown-item href="{{route('logout')}}" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropDown-item>
                 </x-dropDown>
                     <form id="logout-form" method="POST" action="/logout" class="hidden">
                         @csrf
                     </form>
             @else
-                <a href="/register" class="uppercase font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Register</a>
-                <a href="/login" class="uppercase ml-5 font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Login</a>
+                <a href="{{route('createUser')}}" class="uppercase font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Register</a>
+                <a href="{{route('createSession')}}" class="uppercase ml-5 font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Login</a>
 
             @endguest
         </div>

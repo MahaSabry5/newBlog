@@ -32,7 +32,7 @@
                     </form>
             @else
                 <a href="/register" class="uppercase font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Register</a>
-                <a href="/login" class="uppercase font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Login</a>
+                <a href="/login" class="uppercase ml-5 font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Login</a>
 
             @endguest
         </div>

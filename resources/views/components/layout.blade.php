@@ -27,7 +27,7 @@
                     @endcan
                         <x-dropDown-item href="{{route('logout')}}" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropDown-item>
                 </x-dropDown>
-                    <form id="logout-form" method="POST" action="/logout" class="hidden">
+                    <form id="logout-form" method="POST" action="{{route('logout')}}" class="hidden">
                         @csrf
                     </form>
             @else

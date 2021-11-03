@@ -15,9 +15,7 @@
                            value="{{old('name')}}"
                            required
                     >
-{{--                    @error('name')--}}
-{{--                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
-{{--                    @enderror--}}
+
                 </div>
                 <div class="mb-6 ">
                     <label for="username" class="block mb-2 uppercase font-bold text-xs text-gray-700">
@@ -31,9 +29,7 @@
 
                            required
                     >
-{{--                    @error('username')--}}
-{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
-{{--                    @enderror--}}
+
                 </div>
                 <div class="mb-6 ">
                     <label for="email" class="block mb-2 uppercase font-bold text-xs text-gray-700">
@@ -47,9 +43,7 @@
 
                            required
                     >
-{{--                    @error('email')--}}
-{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
-{{--                    @enderror--}}
+
                 </div>
 
                 <div class="mb-6 ">
@@ -62,9 +56,7 @@
                            id="password"
                            required
                     >
-{{--                    @error('password')--}}
-{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
-{{--                    @enderror--}}
+
                 </div>
                 <div class="mb-6 ">
                     <button type="submit" class="bg-blue-400 text-white py-2 px-4 rounded hover:bg-blue-500">

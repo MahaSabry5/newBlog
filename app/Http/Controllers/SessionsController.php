@@ -21,13 +21,9 @@ class SessionsController extends Controller
         if(!auth()->attempt($attributes)){
             throw ValidationException::withMessages(['email'=> 'Could not be verfied maha']);
         }
-        //        return back()
-//            ->withInput()
-//            ->withErrors(['email'=> "Couldn't be verified"]);
+
         session()->regenerate();//session fixation
         return redirect('/')->with('success','WelcomeBack');
-
-
 
     }
     public function destroy(){

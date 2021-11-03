@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Laravel From Scratch Blog</title>
+<title>My Blog</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
             @auth
                 <x-dropDown>
                     <x-slot name="trigger">
-                        <button class="text-xs font-bold uppercase">Welcome , {{auth()->user()->name}}</button>
+                        <button class="text-l text-blue-500 font-bold uppercase mr-10">Welcome , {{auth()->user()->name}}</button>
                     </x-slot>
                     @can('admin')
                         <x-dropDown-item href="admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropDown-item>
@@ -31,14 +31,10 @@
                         @csrf
                     </form>
             @else
-                <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                <a href="/login" class="ml-3 text-xs font-bold uppercase">Login</a>
+                <a href="/register" class="uppercase font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Register</a>
+                <a href="/login" class="uppercase font-semibold text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-10 rounded-2xl">Login</a>
 
             @endguest
-
-            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                Subscribe for Updates
-            </a>
         </div>
     </nav>
 

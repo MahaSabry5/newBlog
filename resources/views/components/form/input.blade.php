@@ -7,7 +7,8 @@
            type="{{$type}}"
            name="{{$name}}"
            id="{{$name}}"
-           value="{{old($name)}}"
+{{--           value="{{old($name)}}"--}}
            required
+           {{$attributes(['value'=>old($name)])}}
     >
 </div>

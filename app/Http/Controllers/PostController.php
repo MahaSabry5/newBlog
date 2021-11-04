@@ -45,13 +45,6 @@ class PostController extends Controller
         })->get();
         return view('posts.view',['posts'=>$posts]);
     }
-
-
-    public function create(){
-
-        return view('admin.posts.create');
-
-    }
     public function store(){
         $attributes=request()->validate([
             'title' =>'required',
@@ -65,9 +58,36 @@ class PostController extends Controller
         Post::create($attributes);
 
         return redirect('/');
-
-
     }
 
+    public function viewPosts(){
+
+        return view('admin.posts.index');
+
+    }
+    public function editPosts(Post $post){
+
+        return view('admin.posts.editPost' ,['post' => $post]);
+
+    }
+    public function update(Post $post){
+
+        $attributes=request()->validate([
+            'title' =>'required',
+            'slug'=>['required',Rule::unique('posts','slug')->ignore($post->id)],
+            'body' =>'required',
+            'excerpt' =>'required',
+            'category_id' =>['required',Rule::exists('categories','id')]
+
+        ]);
+        $post->update($attributes);
+        return back()->with('success','Post updated');
+
+    }
+    public function destroy(Post $post){
+        $post->delete();
+        return back()->with('success','Post deleted');
+
+    }
 
 }

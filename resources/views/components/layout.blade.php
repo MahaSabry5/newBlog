@@ -24,8 +24,10 @@
                     </x-slot>
                     <x-dropDown-item href="{{route('home')}}" :active="request()->route()->named('home')">Home</x-dropDown-item>
 
-                @can('admin')
-                        <x-dropDown-item href="{{route('createPost')}}" :active="request()->route()->named('createPost')">New Post</x-dropDown-item>
+                    @can('admin')
+{{--                            <x-dropDown-item href="{{route('createPost')}}" :active="request()->route()->named('createPost')">New Post</x-dropDown-item>--}}
+                            <x-dropDown-item href="{{route('adminPage')}}" :active="request()->route()->named('adminPage')">Admin Page</x-dropDown-item>
+
                     @endcan
                         <x-dropDown-item href="{{route('logout')}}" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropDown-item>
                 </x-dropDown>

@@ -1,7 +1,5 @@
-<x-layout>
-    <section class="px-6 py-8">
+    <x-adminLayout>
 
-        <main class="max-w-lg mx-auto mt-10 bg-gray-100 border border-gray-200 p-6 rounded-xl ">
             <h1 class="text-lg font-bold mb-4 text-center">
                 Publish new Post
             </h1>
@@ -39,10 +37,6 @@
                         @endforeach
                     </ul>
                 @endif
-
-
             </form>
-        </main>
+    </x-adminLayout>
 
-    </section>
-</x-layout>

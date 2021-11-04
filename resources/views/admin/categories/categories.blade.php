@@ -9,6 +9,7 @@
     table {
         border-collapse: collapse;
         width: 100%;
+
     }
 
     table td {
@@ -18,18 +19,12 @@
     }
 
     .country_name-cell {
-        width:max-content;
+        width:100px;
     }
 
     .code-cell {
         /*width:50px;*/
         color:royalblue;
-        width:200px;
-
-    }
-
-    .pop96-cell {
-        /*text-align: right;*/
         width:max-content;
 
     }
@@ -41,35 +36,31 @@
     th {
         text-align: left;
     }
-
 </style>
-<x-adminLayout>
+
+    <x-adminLayout>
 
         <table>
             <thead>
             <tr>
-                <th class="country_name-cell">Title</th>
-                <th class="code-cell">Category</th>
-                <th class="pop96-cell"> Author</th>
-                <th class="edit"> </th>
-                <th class="edit"> </th>
-
-
+                <th class="country_name-cell">Name</th>
+                <th class="code-cell">Slug</th>
 
             </tr>
             </thead>
             <tbody>
-                @foreach(\App\Models\Post::all() as $post)
-                    <tr class="firstRow">
-                        <td class="country_name-cell">{{$post->title}}</td>
-                        <td class="code-cell">{{$post->category->name}}</td>
-                        <td class="pop96-cell"> {{$post -> author -> name}}</td>
+                @foreach(\App\Models\Category::all() as $category)
+                    @if($category->id !== 1)
+
+                        <tr class="firstRow">
+                        <td class="country_name-cell">{{$category->name}}</td>
+                        <td class="code-cell">{{$category->slug}}</td>
                         <td class="edit">
-                            <a href="{{route('editPosts',[$post->id])}}">Edit</a>
+                            <a href="{{route('editCategory',[$category->id])}}">Edit</a>
                         </td>
                         <td class="edit">
-{{--                            <a href="#">Delete</a>--}}
-                            <form method="POST" action="{{route('deletePost',[$post->id])}}">
+                            {{--                            <a href="#">Delete</a>--}}
+                            <form method="POST" action="{{route('deleteCategory',[$category->id])}}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="text-xs mt-3 text-gray-500">
@@ -78,6 +69,7 @@
                             </form>
                         </td>
                     </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

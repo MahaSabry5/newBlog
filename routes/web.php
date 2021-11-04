@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -45,10 +46,26 @@ Route::group(['middleware' => 'guest'], function () {
 });
 Route::group(['middleware' => 'can:admin'], function () {
     //Route::get('/admin/posts',[AdminPostController::class,'index'])->name('');
-    Route::get('/admin/posts/create',[PostController::class,'create'])->name('createPost');
+    Route::get('/admin',[PostController::class,'viewPosts'])->name('adminPage');
+    Route::get('/admin/posts/create',[AdminPostController::class,'create'])->name('createPost');
     Route::post('/admin/posts',[PostController::class,'store'])->name('storePost');
+    Route::get('/admin/posts/{post}/edit',[PostController::class,'editPosts'])->name('editPosts');
+    Route::patch('/admin/posts/{post}',[PostController::class,'update'])->name('updatePost');
+    Route::delete('/admin/posts/{post}',[PostController::class,'destroy'])->name('deletePost');
     Route::delete('/admin/posts/{comment}',[CommentController::class,'destroy'])->name('deleteComment');
-});
+
+
+    Route::get('/admin/users',[AdminPostController::class,'viewUsers'])->name('users');
+    Route::get('/admin/users/{user}/edit',[AdminPostController::class,'editUsers'])->name('editUsers');
+    Route::patch('/admin/users/{user}',[AdminPostController::class,'update'])->name('updateUser');
+    Route::delete('/admin/users/{user}',[AdminPostController::class,'destroy'])->name('deleteUser');
+
+    Route::get('/admin/categories/{category}/edit',[CategoryController::class,'editCategory'])->name('editCategory');
+    Route::patch('/admin/categories/{category}',[CategoryController::class,'update'])->name('updateCategory');
+    Route::delete('/admin/categories/{category}',[CategoryController::class,'destroy'])->name('deleteCategory');
+    Route::get('/admin/categories',[CategoryController::class,'viewCategories'])->name('categories');
+
+   });
 
 
 

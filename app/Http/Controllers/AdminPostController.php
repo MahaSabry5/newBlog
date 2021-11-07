@@ -21,11 +21,11 @@ class AdminPostController extends Controller
     }
     public function viewUsers(){
 
-        return view('admin.users.users');
+        return view('admin.Users.users');
 
     }
     public function editUsers(User $user){
-        return view('admin.users.editUsers' ,['user' => $user]);
+        return view('admin.Users.editUsers' ,['user' => $user]);
     }
     public function update(User $user){
 
